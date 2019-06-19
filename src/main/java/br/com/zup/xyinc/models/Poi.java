@@ -1,9 +1,13 @@
 package br.com.zup.xyinc.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -13,6 +17,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
 @Document
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Poi {
 
 	@Id
@@ -21,15 +28,9 @@ public class Poi {
 	@Field("name")
 	@NotEmpty(message="Poi's name cannot be empty !!")
 	private String name;
-	@Field
+	@Valid
 	@NotNull(message="Location must not be empty !!")
 	private GeoJsonPoint location;
-	
-	protected Poi() {}
-	
-	public Poi(final String name, final GeoJsonPoint location) {
-		this.name = name;
-		this.location = location;
-	}
+
 	
 }

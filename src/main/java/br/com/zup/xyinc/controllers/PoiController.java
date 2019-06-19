@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zup.xyinc.models.Poi;
@@ -28,9 +28,9 @@ import br.com.zup.xyinc.services.impl.PoiServiceImpl;
 
 @RestController
 @RequestMapping("/api/v1/poi")
+@ResponseBody
 public class PoiController {
 	
-	@Autowired
 	PoiServiceImpl poiServiceImpl;
 	
 	public PoiController(PoiServiceImpl poiServiceImpl) {
@@ -56,7 +56,7 @@ public class PoiController {
 		        Double.valueOf(poiRequest.getYcoord()));
 		
 		
-		return ResponseEntity.ok(new Response<Poi>(this.poiServiceImpl.add(new Poi(poiRequest.getName(),locationPoint))));
+		return ResponseEntity.ok(new Response<Poi>(this.poiServiceImpl.add(new Poi(null, poiRequest.getName(),locationPoint))));
 		
 	}
 	
