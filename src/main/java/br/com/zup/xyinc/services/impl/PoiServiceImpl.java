@@ -1,10 +1,10 @@
 package br.com.zup.xyinc.services.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class PoiServiceImpl implements PoiService {
 	}
 
 	@Override
-	public Optional<List<Poi>> findByCoordinateAndDistance(Point point, Distance d_max) {
+	public GeoResults<Poi> findByCoordinateAndDistance(Point point, Distance d_max) {
 	
 		//return this.poiRepository.findById(String.valueOf(d_max));
 		

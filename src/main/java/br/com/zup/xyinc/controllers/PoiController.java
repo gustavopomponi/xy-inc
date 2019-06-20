@@ -2,11 +2,11 @@ package br.com.zup.xyinc.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
@@ -56,13 +56,13 @@ public class PoiController {
 		        Double.valueOf(poiRequest.getYcoord()));
 		
 		
-		return ResponseEntity.ok(new Response<Poi>(this.poiServiceImpl.add(new Poi(null, poiRequest.getName(),locationPoint))));
+		return ResponseEntity.ok(new Response<Poi>(this.poiServiceImpl.add(new Poi(poiRequest.getName(),locationPoint))));
 		
 	}
 	
 	@GetMapping(path = "/{x_coordinate}/{y_coordinate}/{d_max}")
-	public ResponseEntity<Response<Optional<List<Poi>>>> findPoiByCoordinatesAndDistance(@PathVariable int x_coordinate, @PathVariable int y_coordinate, @PathVariable double d_max){
-		return ResponseEntity.ok(new Response<Optional<List<Poi>>>(this.poiServiceImpl.findByCoordinateAndDistance(new Point(Double.valueOf(x_coordinate), Double.valueOf(y_coordinate)), new Distance(d_max, Metrics.KILOMETERS))));
+	public ResponseEntity<Response<GeoResults<Poi>>> findPoiByCoordinatesAndDistance(@PathVariable int x_coordinate, @PathVariable int y_coordinate, @PathVariable double d_max){
+		return ResponseEntity.ok(new Response<GeoResults<Poi>>(this.poiServiceImpl.findByCoordinateAndDistance(new Point(Double.valueOf(x_coordinate), Double.valueOf(y_coordinate)), new Distance(d_max, Metrics.KILOMETERS))));
 	}
 	
 

@@ -15,22 +15,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -38,16 +33,15 @@ import br.com.zup.xyinc.models.Poi;
 import br.com.zup.xyinc.models.PoiRequest;
 import br.com.zup.xyinc.services.impl.PoiServiceImpl;
 
-@RunWith(SpringRunner.class) 
-@SpringBootTest
-@AutoConfigureMockMvc
-@EnableWebMvc
+@RunWith(MockitoJUnitRunner.class) 
+//@SpringBootTest
+//@AutoConfigureMockMvc
+//@EnableWebMvc
 public class PoiControllerTest {
 	
-	@Autowired 
 	private MockMvc mockMvc;
 	
-	@MockBean
+	@Mock
 	private PoiServiceImpl poiServiceImpl;
 
     @InjectMocks
@@ -63,7 +57,6 @@ public class PoiControllerTest {
         
     }
     
-    @DisplayName("Test Spring - Get All Pois")
     @Test
     public void test_get_all_success() throws Exception {	   
     	
@@ -89,7 +82,6 @@ public class PoiControllerTest {
     	
     }
     
-    @DisplayName("Test Spring - Add Poi")
     @Test
     public void test_add_poi_success() throws Exception {	
     	

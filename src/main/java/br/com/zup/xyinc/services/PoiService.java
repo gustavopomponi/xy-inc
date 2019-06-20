@@ -1,9 +1,9 @@
 package br.com.zup.xyinc.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Point;
 
 import br.com.zup.xyinc.models.Poi;
@@ -14,7 +14,7 @@ public interface PoiService {
 	
 	Poi add(Poi poi);
 	
-	Optional<List<Poi>> findByCoordinateAndDistance(Point point, Distance d_max);
+	GeoResults<Poi> findByCoordinateAndDistance(Point point, Distance d_max);
 
 }
 
